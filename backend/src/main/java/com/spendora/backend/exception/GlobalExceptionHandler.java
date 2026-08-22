@@ -63,13 +63,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(
             Exception ex, HttpServletRequest request) {
+        String msg = ex.getMessage() != null ? ex.getMessage() : "An unexpected internal error occurred";
         ErrorResponse err = new ErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
                 HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
-                "An unexpected internal error occurred",
+                msg,
                 request.getRequestURI(),
                 OffsetDateTime.now(),
-                null
+                List.of(ex.getClass().getName())
         );
         return new ResponseEntity<>(err, HttpStatus.INTERNAL_SERVER_ERROR);
     }
