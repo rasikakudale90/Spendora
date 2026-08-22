@@ -21,6 +21,26 @@
   margin: 0 auto;
 }
 
+/* Sidebar Responsive Styling */
+.spd-sidebar {
+  width: 256px;
+  border-right: 1px solid var(--border);
+  background-color: var(--card);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.spd-mobile-menu-btn {
+  display: none !important;
+}
+
+.spd-sidebar-backdrop {
+  display: none;
+}
+
 /* Card Component (§9.6 SRS) */
 .spd-card {
   background-color: var(--card);
@@ -179,13 +199,15 @@
   border-radius: var(--radius-xl);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .spd-table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 600px;
 }
 
 .spd-table th {
@@ -253,14 +275,17 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  padding: 1rem;
   animation: fadeIn var(--dur-fast) var(--ease-out);
 }
 
 .spd-modal-content {
   background-color: var(--card);
   color: var(--card-foreground);
-  width: 90%;
+  width: 100%;
   max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-modal);
   border: 1px solid var(--border);
@@ -289,4 +314,45 @@
 @keyframes scaleUp {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE BREAKPOINTS (§9.5 SRS)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .spd-mobile-menu-btn {
+    display: inline-flex !important;
+  }
+
+  .spd-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(2px);
+    z-index: 200;
+  }
+
+  .spd-sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 250;
+    box-shadow: var(--shadow-modal);
+    transform: translateX(-100%);
+  }
+
+  .spd-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .page-container {
+    padding: 1rem;
+  }
+
+  .spd-modal-content {
+    padding: 1.25rem 1rem;
+  }
 }

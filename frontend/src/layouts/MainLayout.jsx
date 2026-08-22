@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from '../components/common/Navbar';
 import { Sidebar } from '../components/common/Sidebar';
@@ -16,12 +16,17 @@ const PAGE_TITLES = {
 export const MainLayout = () => {
   const location = useLocation();
   const pageTitle = PAGE_TITLES[location.pathname] || 'Spendora';
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="app-container">
-      <Sidebar />
+      <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
       <div className="main-content">
-        <Navbar pageTitle={pageTitle} />
+        <Navbar
+          pageTitle={pageTitle}
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
         <main style={{ flex: 1, overflow: 'auto' }}>
           <div className="page-container">
             <Outlet />
