@@ -1,9 +1,10 @@
 services:
   - type: web
     name: spendora-backend
-    env: docker
-    dockerContext: backend
-    dockerfilePath: backend/Dockerfile
+    env: java
+    rootDir: backend
+    buildCommand: mvn clean package -DskipTests
+    startCommand: java -jar target/spendora-backend-1.0.0.jar
     healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
