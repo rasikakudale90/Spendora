@@ -1,0 +1,25 @@
+# Environment variables
+.env
+*.env
+!.env.example
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+*.ds_store
+Thumbs.db
+
+# Backend Build
+backend/target/
+backend/.mvn/
+backend/*.jar
+
+# Frontend Build
+frontend/node_modules/
+frontend/dist/
+frontend/.vercel/
+frontend/npm-debug.log*
+
+# Logs
+*.log

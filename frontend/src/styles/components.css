@@ -1,0 +1,292 @@
+@import './variables.css';
+
+/* Layout Grid & Containers */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.page-container {
+  padding: 1.5rem 2rem;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Card Component (§9.6 SRS) */
+.spd-card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+  padding: 1.25rem 1.5rem;
+  transition: transform var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.spd-card.interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-popover);
+}
+
+/* Button Component (§9.6 SRS) */
+.spd-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-family-body);
+  font-weight: 500;
+  font-size: 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.spd-btn:active {
+  transform: scale(0.98);
+}
+
+.spd-btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.spd-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Button Variants */
+.spd-btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.spd-btn-primary:hover {
+  filter: brightness(0.96);
+}
+
+.spd-btn-secondary {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+
+.spd-btn-secondary:hover {
+  background-color: var(--accent);
+}
+
+.spd-btn-outline {
+  background-color: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.spd-btn-outline:hover {
+  background-color: var(--muted);
+}
+
+.spd-btn-ghost {
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.spd-btn-ghost:hover {
+  background-color: var(--muted);
+}
+
+.spd-btn-destructive {
+  background-color: var(--destructive);
+  color: white;
+}
+
+.spd-btn-destructive:hover {
+  filter: brightness(0.92);
+}
+
+/* Button Sizes */
+.spd-btn-sm {
+  height: 32px;
+  padding: 0 0.75rem;
+  font-size: 0.8125rem;
+}
+
+.spd-btn-md {
+  height: 38px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+}
+
+.spd-btn-lg {
+  height: 44px;
+  padding: 0 1.25rem;
+  font-size: 0.9375rem;
+}
+
+.spd-btn-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+}
+
+/* Input & Form Components */
+.spd-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.spd-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.spd-input, .spd-select {
+  height: 40px;
+  padding: 0 0.875rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input);
+  background-color: var(--card);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-family: var(--font-family-body);
+  outline: none;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+  width: 100%;
+}
+
+.spd-input:focus, .spd-select:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ring) 25%, transparent);
+}
+
+/* Table Component */
+.spd-table-container {
+  background-color: var(--card);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.spd-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.spd-table th {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.spd-table td {
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.spd-table tbody tr {
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+
+.spd-table tbody tr:hover {
+  background-color: color-mix(in oklab, var(--muted) 40%, transparent);
+}
+
+.spd-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Badge Component */
+.spd-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.spd-badge-food { background: color-mix(in oklab, var(--cat-2) 18%, transparent); color: var(--cat-2); }
+.spd-badge-transport { background: color-mix(in oklab, var(--cat-1) 18%, transparent); color: var(--cat-1); }
+.spd-badge-shopping { background: color-mix(in oklab, var(--cat-3) 18%, transparent); color: var(--cat-3); }
+.spd-badge-bills { background: color-mix(in oklab, var(--cat-4) 18%, transparent); color: var(--cat-4); }
+.spd-badge-health { background: color-mix(in oklab, var(--cat-5) 18%, transparent); color: var(--cat-5); }
+.spd-badge-entertainment { background: color-mix(in oklab, var(--cat-4) 18%, transparent); color: var(--cat-4); }
+.spd-badge-other { background: color-mix(in oklab, var(--cat-6) 18%, transparent); color: var(--cat-6); }
+
+/* Status Badges */
+.spd-badge-normal { background: color-mix(in oklab, var(--income) 18%, transparent); color: var(--income); }
+.spd-badge-warning { background: color-mix(in oklab, var(--warning) 18%, transparent); color: var(--warning); }
+.spd-badge-exceeded { background: color-mix(in oklab, var(--destructive) 18%, transparent); color: var(--destructive); }
+
+/* Modal Overlay & Dialog */
+.spd-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn var(--dur-fast) var(--ease-out);
+}
+
+.spd-modal-content {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  width: 90%;
+  max-width: 520px;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-modal);
+  border: 1px solid var(--border);
+  padding: 1.5rem 1.75rem;
+  animation: scaleUp var(--dur-fast) var(--ease-out);
+}
+
+/* Skeleton Loading Animation */
+.spd-skeleton {
+  background: linear-gradient(90deg, var(--muted) 25%, color-mix(in oklab, var(--muted) 60%, var(--card)) 50%, var(--muted) 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s infinite ease-in-out;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeletonLoading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
